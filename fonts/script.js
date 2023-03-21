@@ -1,7 +1,7 @@
 var Airtable = require("airtable");
 var base = new Airtable({
-  apiKey: "keyweomR3DyiEOj84",
-}).base("appRg418XISw0Yzad");
+  apiKey: "keyCteapyZ1OyWKMD",
+}).base("appUX3a2EFTq8Lc9h");
 
 // create empty array to use later for filters
 let locations = [];
@@ -9,7 +9,7 @@ let locations = [];
 // find the parent container element to which we will append each record
 let container = document.querySelector(".content-container");
 
-base("playlist")
+base("8thbags")
   .select({
     // Selecting the first 5 records in Grid view:
     maxRecords: 50,
