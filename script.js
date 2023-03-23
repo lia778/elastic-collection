@@ -2,7 +2,6 @@ var Airtable = require("airtable");
 var base = new Airtable({
   apiKey: "keyCteapyZ1OyWKMD",
 }).base("appUX3a2EFTq8Lc9h");
-
 // create empty array to use later for filters
 let locations = [];
 
@@ -11,14 +10,14 @@ let container = document.querySelector(".content-container");
 
 base("Table 1")
   .select({
-    // Selecting the first 5 records in Grid view:
+    // Selecting the first 50 records in Grid view:
     maxRecords: 50,
     view: "Grid view",
   })
   .eachPage(
     function page(records, fetchNextPage) {
+      console.log("records",records);
       // This function (`page`) will get called for each page of records.
-
       records.forEach(function (record, index) {
         // loop through each year in this record
         record.fields.location.forEach((location) => {
