@@ -9,7 +9,7 @@ let locations = [];
 // find the parent container element to which we will append each record
 let container = document.querySelector(".content-container");
 
-base("8thbags")
+base("Table 1")
   .select({
     // Selecting the first 5 records in Grid view:
     maxRecords: 50,
