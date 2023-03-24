@@ -32,8 +32,11 @@ base("Table 1").select({
         airtableItem.append(Name);
        // append div to body 
         document.body.append(airtableItem);
+
+      
       }
     
+      
     )
   }
 ); 
