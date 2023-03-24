@@ -1,4 +1,3 @@
-// activate airtable object
 var Airtable = require("airtable");
 
 var base = new Airtable(
