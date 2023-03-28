@@ -1,23 +1,37 @@
 var Airtable = require("airtable");
-
 var base = new Airtable(
   {apiKey:"keyCteapyZ1OyWKMD"}
 ).base("appgp5WUx7Qk5bSfm");
 
+// create empty array to use later for filters
+let locations = [];
+
+// find the parent container element to which we will append each record
+let container = document.querySelector(".content-container");
+
 base("Table 1").select({
     maxRecords: 50,
-    // view: "Grid view",
-}).eachPage(
+    view: "Grid view",
+})
+.eachPage(
   function page(records, fetchNextPage){
-    console.log("records:", records); 
-    records.forEach(
-      function (record) {
+    // This function (`page`) will get called for each page of records.
+    records.forEach(function (record, index) {
+      // loop through each year in this record
+      record.fields.location.forEach((location) => {
+        // if the year is not already in the years array
+        // add it to the years array
+        if (!locations.includes(location)) locations.push(location);
+      });
         // pull my airtable data 
-        // each record will have its own div
+        // create div element for each record
         let airtableItem = document.createElement("div");
+        // add a class to the record element
         // add some data specific meta to my new divs for filtering
         airtableItem.classList.add("airtable-item");
-        airtableItem.setAttribute("data-Brand", record.fields.Brand);
+        // set the data-year attribute equal to the value of the record year
+        // this will be used to sort items
+        airtableItem.setAttribute("data-brand", record.fields.brand);
         
         // create a img tag for my album art 
         let image = document.createElement("img");
@@ -31,8 +45,6 @@ base("Table 1").select({
         airtableItem.append(Name);
        // append div to body 
         document.body.append(airtableItem);
-
-      
       }
     
       
@@ -41,11 +53,11 @@ base("Table 1").select({
 ); 
 
 // set up a event listener for my empowering button 
-// listen for user clicker, once it is clicker, serach for divs with data-Brand, empowering 
+// listen for user clicker, once it is clicked, serach for divs with data-Brand, empowering 
 
 // get our button using css ID 
 // assign a event listener to my button to listen for click
-let empoweringFilterBtn = document.getElementById("Empowering");
+let empoweringFilterBtn = document.getElementById("Backpack Boyz");
 empoweringFilterBtn.addEventListener("click", function(event){
   console.log("this is filter being pressed:", event.target.id);
   // search my airtable-item divs, and see which data-Brand contains "empowering"
@@ -54,15 +66,15 @@ empoweringFilterBtn.addEventListener("click", function(event){
   
   // search for data-Brand, containg empowering 
   listofAirtableItems.forEach(
-    function searchEmpoweringFilter(item){
+    function searchBackpackBoyzFilter(item){
       // if item.dataset.Brand equal to "Empowering, then we trigger something 
-      if (item.dataset.Brand == "Empowering") {
+      if (item.dataset.Brand == "Backpack Boyz") {
         // if the div has data-Brand empowering, add red background by adding css class
-        item.classList.add("empowering-filter-show");
+        item.classList.add("Backpack Boyz-filter-show");
         console.log(item);
       }
       else {
-        item.classList.add("empowering-filter-hide");
+        item.classList.add("Backpack Boyz-filter-hide");
       }
       
       

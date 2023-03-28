@@ -11,7 +11,7 @@
 @font-face {
     font-family: 'Mattone-150';
     src: url('./fonts/Mattone-150.woff') format('woff'),
-        url('./fonts/NH-Regular.woff2') format('woff2');
+        url('./fonts/Mattone-150.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
