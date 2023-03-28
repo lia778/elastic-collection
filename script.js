@@ -18,10 +18,10 @@ base("Table 1").select({
     // This function (`page`) will get called for each page of records.
     records.forEach(function (record, index) {
       // loop through each year in this record
-      record.fields.location.forEach((location) => {
+      record.fields.Location.forEach((Location) => {
         // if the year is not already in the years array
         // add it to the years array
-        if (!locations.includes(location)) locations.push(location);
+        if (!locations.includes(Location)) locations.push(Location);
       });
         // pull my airtable data 
         // create div element for each record
@@ -31,7 +31,86 @@ base("Table 1").select({
         airtableItem.classList.add("airtable-item");
         // set the data-year attribute equal to the value of the record year
         // this will be used to sort items
-        airtableItem.setAttribute("data-brand", record.fields.brand);
+        airtableItem.setAttribute("data-Brand", record.fields.Brand);
+        airtableItem.setAttribute("data-Source", record.fields.Source);
+        airtableItem.setAttribute("data-Authenticity", record.fields.Authenticity);
+        airtableItem.setAttribute("data-Location", record.fields.Location);
+        airtableItem.setAttribute("data-Packager", record.fields.Packager);
+
+        /*
+        drawer title button
+        */
+
+        // create a button element hold the title, artist, and year
+        let drawerButton = document.createElement("button");
+        // add a class to the button element
+        drawerButton.classList.add("drawer-button");
+        // create an h2 element for the title
+        let drawerButtonTitle = document.createElement("h2");
+        // add a class to the button element
+        drawerButtonTitle.classList.add("drawer-button--Name");
+        // render the value of the record's title
+        drawerButtonTitle.innerHTML = record.fields.Name;
+        // append the button element to the airtableItem div element created above
+        drawerButton.append(drawerButtonTitle);
+
+        // create a button element hold the title, artist, and year
+        let drawerButtonInfo = document.createElement("div");
+        // add a class to the button element
+        drawerButtonInfo.classList.add("drawer-button--info");
+        // render the value of the record's title
+        drawerButtonInfo.innerHTML = `${record.fields.Date[0]}, ${record.fields.Brand}, ${record.fields.Source}, ${record.fields.Authenticity}, ${record.fields.Location}, ${record.fields.Packager}`;
+        // append the button element to the airtableItem div element created above
+        drawerButton.append(drawerButtonInfo);
+        // append the button element to the airtableItem div element created above
+        airtableItem.append(drawerButton);
+      
+        // create a div element for the record's description, link, and image
+        let drawerContent = document.createElement("div");
+        // add a class to the img element
+        drawerContent.classList.add("drawer-content");
+        // if this is the first item in the for loop
+        // add class to open it initially
+        if (index == 0) {
+          airtableItem.classList.add("is-open");
+        }
+
+        // create a div element for the record's description
+        let drawerContentDescription = document.createElement("div");
+        // add a class to the description element
+        drawerContentDescription.classList.add("drawer-content--description");
+        // render the record's desription in the html
+        drawerContentDescription.innerHTML = record.fields.description;
+        // append the div element to the airtableItem div element created above
+        drawerContent.append(drawerContentDescription);
+
+        // create a div element for the record's description
+        let drawerContentImageTable = document.createElement("div");
+        // add a class to the description element
+        drawerContentImageTable.classList.add("drawer-content--imageTable");
+        // append the div element to the airtableItem div element created above
+        drawerContent.append(drawerContentImageTable);
+
+        // create an img element for the record's image
+        let drawerContentImage = document.createElement("img");
+        // add a class to the image element
+        drawerContentImage.classList.add("drawer-content--image");
+        // set the source of the record's image
+        drawerContentImage.src = record.fields.image[0].url;
+        // append the img element to the image container element created above
+        drawerContentImageTable.append(drawerContentImage);
+
+        // append the drawer content element to the airtableItem div element created above
+        airtableItem.append(drawerContent);        
+
+        // once all elements are created for this record,
+        // append it to the parent container
+        container.append(airtableItem);
+
+        // create drawer toggle function
+        drawerButton.addEventListener("click", () => {
+          airtableItem.classList.toggle("is-open");
+        });        
         
         // create a img tag for my album art 
         let image = document.createElement("img");
