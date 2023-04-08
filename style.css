@@ -37,6 +37,10 @@ body {
     font-size: 1.6rem;
 }
 
+img {
+    width: 200px;
+}
+
 h1{
     font-size: 10rem;
     text-transform: uppercase;
@@ -52,8 +56,11 @@ h1{
 /* main{
     display: flex;
 } */
+.filter-show {
+    display: inline-block;
+}
 
-.hidden{
+.filter-hide {
     display: none;
 }
 
