@@ -58,12 +58,18 @@ h1{
 }
 
 .subtitle{
-    color: var(--grey);
-    font-size: 1.2rem;
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 main {
     border-top: 10px dashed white;
+}
+
+.container{
+    margin-left: 40rem;
+    margin-right: 40rem;
 }
 
 .filter-show {
@@ -93,7 +99,16 @@ main {
 }
 
 .button-wrapper{
-    margin-top: 3rem;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+.button{
+    padding: 1rem;
+    border: solid rgb(39, 39, 39) 5px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.384);
+
 }
 
 .button:hover{
@@ -101,47 +116,32 @@ main {
 }
 
 .filters-container{
-    display: block;
+    display: flex;
+    text-align: left;
+    justify-content: space-between;
     font-size: 2rem;
 }
 
-.filters{
-    display: flex;
-    gap: .5rem;
-    margin-top: 1rem;
-}
-
-.filter-btn, 
-.sort-toggle{
-    background: black;
-    color: white;
-    padding: 1rem;
-    border-radius: .5rem;
-}
-
-.filter-btn:not(.is-active):hover,
-.sort-toggle:hover{
-    background: #7000FF;
-}
-
 @media screen and (max-width: 850px) {
-    .sort-container{
-        margin-top: 2rem;
+    .content-container{
+        display: grid;
+        grid-template-columns: repeat(2, 300px);
+        grid-gap: 5rem;
     }
 
-    .button-wrapper{
-        flex-direction: column;
-        margin-top: 1rem;
+    .container{
+        margin-left: 10rem;
+        margin-right: 10rem;
+    }    
+
+    .filters-container{
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
     }
     
-
-    .filter-btn,
-    .sort-toggle{
-        font-size: 1.2rem;
-    }
-
     .sort-container .subtitle{
-        text-align: left;
+    text-align: left;
     }
 }
 
