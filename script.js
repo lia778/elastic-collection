@@ -21,7 +21,7 @@ base("Table 1").select({
       let airtableItem = document.createElement("div");
       // add some data specific meta to my new divs for filtering
       airtableItem.classList.add("airtable-item");
-      airtableItem.setAttribute("data-Brand", record.fields.Brand);
+      airtableItem.setAttribute("data-Location", record.fields.Location);
 
       // create a img tag for my album art
       let bag = document.createElement("img");
@@ -43,17 +43,97 @@ base("Table 1").select({
 
 // get our button using css ID
 // assign a event listener to my button to listen for click
-let BackpackBoyzFilterBtn = document.getElementById("BackpackBoyz");
-BackpackBoyzFilterBtn.addEventListener("click", function (event) {
+let ManhattanFilterBtn = document.getElementById("Manhattan");
+ManhattanFilterBtn.addEventListener("click", function (event) {
   console.log("this is filter being pressed:", event.target.id);
   // search my airtable-item divs, and see which data-mood contains "empowering"
   // put my airtable-divs in an array [airtable-div 1, airtable-div-2], find the div tht has data-mood
   let listofAirtableItems = document.querySelectorAll("div.airtable-item");
 
   // search for data-mood, containg empowering
-  listofAirtableItems.forEach(function searchBackpackBoyzFilter(item) {
+  listofAirtableItems.forEach(function searchManhattanFilter(item) {
     // if item.dataset.mood equal to "Empowering, then we trigger something
-    if (item.dataset.brand == "BackpackBoyz") {
+    if (item.dataset.location == "Manhattan") {
+      // if the div has data-mood empowering, add red background by adding css class
+      item.classList.add("filter-show");
+      console.log(item);
+    } else {
+      item.classList.add("filter-hide");
+    }
+  });
+});
+
+let BrooklynFilterBtn = document.getElementById("Brooklyn");
+BrooklynFilterBtn.addEventListener("click", function (event) {
+  console.log("this is filter being pressed:", event.target.id);
+  // search my airtable-item divs, and see which data-mood contains "empowering"
+  // put my airtable-divs in an array [airtable-div 1, airtable-div-2], find the div tht has data-mood
+  let listofAirtableItems = document.querySelectorAll("div.airtable-item");
+
+  // search for data-mood, containg empowering
+  listofAirtableItems.forEach(function searchBrooklynFilter(item) {
+    // if item.dataset.mood equal to "Empowering, then we trigger something
+    if (item.dataset.location == "Brooklyn") {
+      // if the div has data-mood empowering, add red background by adding css class
+      item.classList.add("filter-show");
+      console.log(item);
+    } else {
+      item.classList.add("filter-hide");
+    }
+  });
+});
+
+let QueensFilterBtn = document.getElementById("Queens");
+QueensFilterBtn.addEventListener("click", function (event) {
+  console.log("this is filter being pressed:", event.target.id);
+  // search my airtable-item divs, and see which data-mood contains "empowering"
+  // put my airtable-divs in an array [airtable-div 1, airtable-div-2], find the div tht has data-mood
+  let listofAirtableItems = document.querySelectorAll("div.airtable-item");
+
+  // search for data-mood, containg empowering
+  listofAirtableItems.forEach(function searchQueensFilter(item) {
+    // if item.dataset.mood equal to "Empowering, then we trigger something
+    if (item.dataset.location == "Queens") {
+      // if the div has data-mood empowering, add red background by adding css class
+      item.classList.add("filter-show");
+      console.log(item);
+    } else {
+      item.classList.add("filter-hide");
+    }
+  });
+});
+
+let SeattleFilterBtn = document.getElementById("Seattle");
+SeattleFilterBtn.addEventListener("click", function (event) {
+  console.log("this is filter being pressed:", event.target.id);
+  // search my airtable-item divs, and see which data-mood contains "empowering"
+  // put my airtable-divs in an array [airtable-div 1, airtable-div-2], find the div tht has data-mood
+  let listofAirtableItems = document.querySelectorAll("div.airtable-item");
+
+  // search for data-mood, containg empowering
+  listofAirtableItems.forEach(function searchSeattleFilter(item) {
+    // if item.dataset.mood equal to "Empowering, then we trigger something
+    if (item.dataset.location == "Seattle") {
+      // if the div has data-mood empowering, add red background by adding css class
+      item.classList.add("filter-show");
+      console.log(item);
+    } else {
+      item.classList.add("filter-hide");
+    }
+  });
+});
+
+let MarylandFilterBtn = document.getElementById("Maryland");
+MarylandFilterBtn.addEventListener("click", function (event) {
+  console.log("this is filter being pressed:", event.target.id);
+  // search my airtable-item divs, and see which data-mood contains "empowering"
+  // put my airtable-divs in an array [airtable-div 1, airtable-div-2], find the div tht has data-mood
+  let listofAirtableItems = document.querySelectorAll("div.airtable-item");
+
+  // search for data-mood, containg empowering
+  listofAirtableItems.forEach(function searchMarylandFilter(item) {
+    // if item.dataset.mood equal to "Empowering, then we trigger something
+    if (item.dataset.location == "Maryland") {
       // if the div has data-mood empowering, add red background by adding css class
       item.classList.add("filter-show");
       console.log(item);
@@ -76,3 +156,25 @@ ALLFilterBtn.addEventListener("click", function (event) {
     item.classList.add("filter-show");
   });
 });
+
+const holographicElement = document.getElementById("holographic");
+
+function updateHolographicBackground(value) {
+  const percentage = value * 100;
+  holographicElement.style.backgroundPosition = percentage + "%";
+}
+
+function handleMouseMove(event) {
+  const x = event.clientX;
+  const width = document.documentElement.clientWidth;
+  const value = x / width;
+  updateHolographicBackground(value);
+}
+
+function handleDeviceOrientation(event) {
+  const z = Math.abs(event.alpha); // rotation degrees from 0 to 360
+  const value = z / 360;
+  updateHolographicBackground(value);
+}
+
+window.addEventListener("deviceorientation", handleDeviceOrientation, true);
