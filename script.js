@@ -30,9 +30,13 @@ base("Table 1").select({
       let Name = document.createElement("span");
       Name.innerHTML = record.fields.Name;
 
+      let Authenticity = document.createElement("span")
+      Authenticity.innerHTML = record.fields.Authenticity;
+
       // appending to div holding each airtable record
       airtableItem.append(bag);
       airtableItem.append(Name);
+      airtableItem.append(Authenticity);
       // append div to body
       container.append(airtableItem);
     });
