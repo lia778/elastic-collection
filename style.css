@@ -93,7 +93,7 @@ main {
 
 .airtable-item{
     padding: 2rem;
-    border: solid rgb(39, 39, 39) 5px;
+    border: solid rgb(39, 39, 39) 3px;
     border-radius: 4px 4px 35px 35px;
     background-color: rgba(255, 255, 255, 0.384);    
 }
@@ -105,7 +105,7 @@ main {
 
 .button{
     padding: 1rem;
-    border: solid rgb(39, 39, 39) 5px;
+    border: solid rgb(39, 39, 39) 3px;
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.384);
 
